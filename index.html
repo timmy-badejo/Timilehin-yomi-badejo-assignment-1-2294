@@ -152,13 +152,14 @@
     		//'$' + concatenates a dollar sign ($) to the beginning of this string, indicating that the value represents a dollar amount. //
 			document.querySelector('#tax').innerText = '$' + tax.toFixed(2);
 
-            // Calculate total //
-            var total = subTotal - discount + tax;
-            document.querySelector('#Total').innerText = '$' + total.toFixed(2);
+            // This line calculates the final total amount due //
+            var total = subTotal - discount + tax; // This part calculates the adjusted sub-total by subtracting the discount from the sub-total.//
+            //+ tax: This part adds the tax to the adjusted sub-total to get the final total amount.//
+            document.querySelector('#Total').innerText = '$' + total.toFixed(2); //selects the span element that displays the total using its ID #Total.//
         }
 
 		// Add event listener to the calculate button // 
-		document.querySelector('#calculate').addEventListener('click', calculate);
+		document.querySelector('#calculate').addEventListener('click', calculate); //selects the button element that triggers the calculation using its ID #calculate.//
 	    
 	
 	
