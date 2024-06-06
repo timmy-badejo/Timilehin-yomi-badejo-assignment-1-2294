@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>MDIA 2294</title>
+	
+	<style>
+	    thead{
+	        font-weight:bold;
+	    }
+	    
+	    td{
+	        padding-left:5px;
+	        padding-right:5px;	        
+	    }
+	    
+	    td.sub-total{
+	        text-align:right;	        
+	    }
+	</style>
+</head>
+<body>
+	<h1>MDIA 2294: ACME Corp Invoice</h1>
+	
+	<table>
+	    <thead>
+	        <tr>
+	            <td>ITEM</td>
+	            <td>DESCRIPTION</td>
+	            <td>QTY</td>
+	            <td>PRICE</td>
+	            <td>LINE TOTAL</td>
+	        </tr>
+	    </thead>
+	    <tbody>
+	        <tr>
+	            <td>1</td>
+	            <td><input id="line-1-description" type="text" size="40" value="Anvil" /></td>
+	            <td><input id="line-1-quantity" type="text" size="3" value="5" /></td>
+	            <td><input id="line-1-price" type="text" size="6" value="35.00" /></td>
+	            <td class="sub-total"><span id="line-1"></span></td>
+	        </tr>
+	        <tr>
+	            <td>2</td>
+	            <td><input id="line-2-description" type="text" size="40" value="Rocket Skates (each)" /></td>
+	            <td><input id="line-2-quantity" type="text" size="3" value="2" /></td>
+	            <td><input id="line-2-price" type="text" size="6" value="24.99" /></td>
+	            <td class="sub-total"><span id="line-2"></span></td>
+	        </tr>
+	        <tr>
+	            <td>3</td>
+	            <td><input id="line-3-description" type="text" size="40" value="Giant Magnet" /></td>
+	            <td><input id="line-3-quantity" type="text" size="3" value="1" /></td>
+	            <td><input id="line-3-price" type="text" size="6" value="125.50" /></td>
+	            <td class="sub-total"><span id="line-3"></span></td>
+	        </tr>
+	        <tr>
+	            <td>4</td>
+	            <td><input id="line-4-description" type="text" size="40" value="Ball bearings" /></td>
+	            <td><input id="line-4-quantity" type="text" size="3" value="1000" /></td>
+	            <td><input id="line-4-price" type="text" size="6" value="0.25" /></td>
+	            <td class="sub-total"><span id="line-4"></span></td>
+	        </tr>
+	        <tr>
+	            <td>5</td>
+	            <td><input id="line-5-description" type="text" size="40" value="Portable holes" /></td>
+	            <td><input id="line-5-quantity" type="text" size="3" value="12" /></td>
+	            <td><input id="line-5-price" type="text" size="6" value="15.25" /></td>
+	            <td class="sub-total"><span id="line-5"></span></td>
+	        </tr>
+	    </tbody>
+	    <tfoot>
+	        <tr>
+	            <td colspan="4" style="text-align:right;">SUB TOTAL</td>  
+	            <td class="sub-total"><span id="sub-total"></span></td>	        
+	        </tr>
+	        <tr>
+	            <td colspan="4" style="text-align:right;">DISCOUNT</td>  
+	            <td class="sub-total"><span id="discount"></span></td>	        
+	        </tr>
+	        <tr>
+	            <td colspan="4" style="text-align:right;">TAX</td>  
+	            <td class="sub-total"><span id="tax"></span></td>	        
+	        </tr>
+	        <tr>
+	            <td colspan="4" style="text-align:right;">TOTAL</td>  
+	            <td class="sub-total" style="border-top:solid black 1px"><span id="Total"></span></td>	        
+	        </tr>
+	    </tfoot>	    
+	</table>
+	
+	<div><button id="calculate">Calculate</button></div>
+	<div>NOTE: discounts of 10% are given to orders over $250</div>
+
+	<script>
+	    function calculate() {
+			
+           
+
+			/* Timilehin Yomi-Badejo student ID: a01192081 */
+
+			// retriving quantity and pricing //
+			// retriving an item "attribute" using variable "var" and the 'atrribute name given'use the queryselector to select the item //
+			// Retrieves the quantity and price inputs for each line item and converts them to floating-point numbers //
+			var line1_qty = parseFloat(document.querySelector('#line-1-quantity').value);
+            var line1_price = parseFloat(document.querySelector('#line-1-price').value);
+            var line2_qty = parseFloat(document.querySelector('#line-2-quantity').value);
+            var line2_price = parseFloat(document.querySelector('#line-2-price').value);
+            var line3_qty = parseFloat(document.querySelector('#line-3-quantity').value);
+            var line3_price = parseFloat(document.querySelector('#line-3-price').value);
+            var line4_qty = parseFloat(document.querySelector('#line-4-quantity').value);
+            var line4_price = parseFloat(document.querySelector('#line-4-price').value);
+            var line5_qty = parseFloat(document.querySelector('#line-5-quantity').value);
+            var line5_price = parseFloat(document.querySelector('#line-5-price').value);
+
+			// calculating total for each line //
+			// Multipling the line quantity and line price for each item to get the line total using the value from the above retrived quantity and price //
+			var line1_total = line1_qty * line1_price;
+            var line2_total = line2_qty * line2_price;
+            var line3_total = line3_qty * line3_price;
+            var line4_total = line4_qty * line4_price;
+            var line5_total = line5_qty * line5_price;
+
+			// Updates the corresponding span elements with the line total, formatted to two decimal places using the ".toFixed(2)" //
+			// document.querySelector call selects a span element by its ID. The innerText property is then used to update the text inside each span element with the corresponding line total. The .toFixed(2) ensure it always has two decimal places//
+
+			document.querySelector('#line-1').innerText = '$' + line1_total.toFixed(2);
+            document.querySelector('#line-2').innerText = '$' + line2_total.toFixed(2);
+            document.querySelector('#line-3').innerText = '$' + line3_total.toFixed(2);
+            document.querySelector('#line-4').innerText = '$' + line4_total.toFixed(2);
+			document.querySelector('#line-5').innerText = '$' + line5_total.toFixed(2);
+
+			// calculating the subtotal //
+			// adds together the total cost of each individual line item //
+			// document.querySelector('#sub-total') selects the span element that displays the sub-total using its ID #sub-total.//
+            //The innerText property is then used to update the text content of this span element.'$' + subTotal.toFixed(2):subTotal.toFixed(2) converts the sub-total to a string with exactly two decimal places.//
+
+			var subTotal = line1_total + line2_total + line3_total + line4_total + line5_total;
+            document.querySelector('#sub-total').innerText = '$' + subTotal.toFixed(2);
+
+			// Calculate discount//
+            var discount = 0; // discount variable to 0. This ensures that if no discount is applicable, the discount amount will remain zero.//
+            if (subTotal > 250) { // This line checks if the subTotal is greater than $250.The condition ensures that the discount is only applied if the total cost of items before any discounts or taxes exceeds $250.//
+                discount = subTotal * 0.10; //If the sub-total is greater than $250, this line calculates a 10% discount.The discount amount is computed by multiplying the subTotal by 0.10.//
+            }
+            document.querySelector('#discount').innerText = '$' + discount.toFixed(2); // selects the span element that displays the discount using its ID #discount.The innerText property updates the text content of this span element with the calculated discount.//
+
+            // Calculate tax
+            var tax = (subTotal - discount) * 0.15; // Assuming tax rate is 15%// //calculates the adjusted sub-total by subtracting the discount from the sub-total.The adjusted sub-total is the amount on which tax will be calculated.//
+			// selects the span element that displays the tax using its ID #tax.The innerText property updates the text content of this span element with the calculated tax.
+			// '$' + tax.toFixed(2):tax.toFixed(2) converts the tax amount to a string with exactly two decimal places, ensuring it is formatted as a proper monetary value (e.g., 15.00).
+    		//'$' + concatenates a dollar sign ($) to the beginning of this string, indicating that the value represents a dollar amount. //
+			document.querySelector('#tax').innerText = '$' + tax.toFixed(2);
+
+            // Calculate total //
+            var total = subTotal - discount + tax;
+            document.querySelector('#Total').innerText = '$' + total.toFixed(2);
+        }
+
+		// Add event listener to the calculate button // 
+		document.querySelector('#calculate').addEventListener('click', calculate);
+	    
+	
+	
+    </script>
+</body>
+</html>
